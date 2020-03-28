@@ -23,21 +23,4 @@ export default () => {
       />
     </SafeAreaView>
   );
-
-  // return (
-  //   <SafeAreaView>
-  //     <ScrollView>
-  //       {nachos.map((item, index) => (
-  //         <Fragment key={item.id}>
-  //           <ListItem
-  //             name={item.name}
-  //             onFavoritePress={onFavoritePress}
-  //             isFavorite={index < 2}
-  //           />
-  //           <Separator />
-  //         </Fragment>
-  //       ))}
-  //     </ScrollView>
-  //   </SafeAreaView>
-  // );
 };
