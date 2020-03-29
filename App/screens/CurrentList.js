@@ -16,7 +16,15 @@ import uuid from 'uuid/v4';
 
 export default () => {
   const [list, setList] = useState(nachos);
-  // const [favorite, setFavorite] = useState(false);
+
+  const addItem = text => {
+    setList([{id: uuid(), name: text}, ...list]);
+  };
+
+  const removeItem = id => {
+    const newList = list.filter(item => item.id !== id);
+    setList(newList);
+  };
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -29,15 +37,15 @@ export default () => {
               name={item.name}
               onFavoritePress={() => alert('todo')}
               isFavorite={index < 2}
+              onAddedSwipe={() => removeItem(item.id)}
+              onDeleteSwipe={() => removeItem(item.id)}
             />
           )}
           keyExtractor={item => item.id}
           ItemSeparatorComponent={() => <Separator />}
           ListHeaderComponent={() => (
             <AddItem
-              onSubmitEditing={({nativeEvent: {text}}) => {
-                setList([{id: uuid(), name: text}, ...list]);
-              }}
+              onSubmitEditing={({nativeEvent: {text}}) => addItem(text)}
             />
           )}
         />
